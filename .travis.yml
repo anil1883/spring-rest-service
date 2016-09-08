@@ -1,2 +1,2 @@
 language: java
-script: mvn spring-boot:run -DskipTests=true -Dmaven.javadoc.skip=true
+script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true
