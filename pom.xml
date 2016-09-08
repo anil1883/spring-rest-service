@@ -7,6 +7,16 @@
 	<version>1.0</version>
 	<name>rest</name>
 	
+	<properties>
+<tomcat.version>7.0.34</tomcat.version>
+<jersey.version>1.8</jersey.version>
+<target.version>1.7</target.version>
+<appassembler.version>1.8</appassembler.version>
+<source.version>1.7</source.version>
+<mvn.compiler.version>3.0</mvn.compiler.version>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+	
 	<repositories>
 		<repository>
 			<id>eap</id>
