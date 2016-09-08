@@ -1,2 +1,7 @@
 language: java
 script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true
+deploy:
+  provider: heroku
+  app: test-spring123
+  api_key:
+    secure: "362d5905-7aee-4c66-9989-ee5a118af09a"
