@@ -72,42 +72,60 @@
 
 
 	</dependencies>
-	<profiles>
-		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
-				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
-				will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps' 
-				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<finalName>rest</finalName>
-				<plugins>
-					 <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.3</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals><goal>copy</goal></goals>
-                    <configuration>
-                        <artifactItems>
-                            <artifactItem>
-                                <groupId>com.github.jsimone</groupId>
-                                <artifactId>webapp-runner</artifactId>
-                                <version>8.0.30.2</version>
-                                <destFileName>webapp-runner.jar</destFileName>
-                            </artifactItem>
-                        </artifactItems>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<build>
+<finalName>rest</finalName>
+<plugins>
+<!--
+ <plugin> <artifactId>maven-war-plugin</artifactId> <version>2.1.1</version> 
+				<configuration> <warSourceDirectory>src/main/java/com</warSourceDirectory> 
+				<webResources> <resource> <directory>WebContent</directory> </resource> </webResources> 
+				</configuration> </plugin> 
+-->
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-dependency-plugin</artifactId>
+<version>2.3</version>
+<executions>
+<execution>
+<phase>package</phase>
+<goals>
+<goal>copy</goal>
+</goals>
+<configuration>
+<artifactItems>
+<artifactItem>
+<groupId>com.github.jsimone</groupId>
+<artifactId>webapp-runner</artifactId>
+<version>7.0.40.0</version>
+<destFileName>webapp-runner.jar</destFileName>
+</artifactItem>
+</artifactItems>
+</configuration>
+</execution>
+</executions>
+</plugin>
+<plugin>
+<groupId>org.codehaus.mojo</groupId>
+<artifactId>appassembler-maven-plugin</artifactId>
+<version>${appassembler.version}</version>
+<configuration>
+<assembleDirectory>target</assembleDirectory>
+<programs>
+<program>
+<mainClass>launch.Main</mainClass>
+<name>webapp</name>
+</program>
+</programs>
+</configuration>
+<executions>
+<execution>
+<phase>package</phase>
+<goals>
+<goal>assemble</goal>
+</goals>
+</execution>
+</executions>
+</plugin>
+</plugins>
+</build>
 </project>
