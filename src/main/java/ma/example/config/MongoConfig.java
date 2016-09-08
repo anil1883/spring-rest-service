@@ -13,7 +13,7 @@ public class MongoConfig {
     
 	public @Bean
 	MongoDbFactory mongoDbFactory() throws Exception {
-		return new SimpleMongoDbFactory(new MongoClient(), "taskdb");
+		return new SimpleMongoDbFactory(new MongoClient(), "springtest");
 	}
 	public @Bean MongoTemplate mongoTemplate() throws Exception {
 	      return new MongoTemplate(mongoDbFactory());
