@@ -44,33 +44,47 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>2.11.4</version>
 		</dependency>
-
-
+		 <dependency>
+            <groupId>com.github.jsimone</groupId>
+            <artifactId>webapp-runner</artifactId>
+            <version>7.0.57.1</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 	<build>
-    <finalName>test</finalName>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.3</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals><goal>copy</goal></goals>
-                    <configuration>
-                        <artifactItems>
-                            <artifactItem>
-                                <groupId>com.github.jsimone</groupId>
-                                <artifactId>webapp-runner</artifactId>
-                                <version>8.0.30.2</version>
-                                <destFileName>webapp-runner.jar</destFileName>
-                            </artifactItem>
-                        </artifactItems>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-  </build>
+        <plugins>
+	   <plugin>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>2.3.2</version>
+		<configuration>
+			<source>1.6</source>
+			<target>1.6</target>
+		</configuration>
+	   </plugin>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>copy-dependencies</goal></goals>
+                        <configuration>
+                            <includeArtifactIds>webapp-runner</includeArtifactIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
