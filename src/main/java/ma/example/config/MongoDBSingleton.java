@@ -33,7 +33,7 @@ public class MongoDBSingleton {
  public DB getTestdb() {
 	 
 	//link is: mongodb://<user>:<password>@ds<port>.mlab.com:<port>/<db>
-	    MongoClientURI uri  = new MongoClientURI("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest?authMode=scram-sha1");
+	    MongoClientURI uri  = new MongoClientURI("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest");
 	    MongoClient client;
 		try {
 			mongoClient = new MongoClient(uri);
