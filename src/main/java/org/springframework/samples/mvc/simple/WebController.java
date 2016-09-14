@@ -38,6 +38,7 @@ public class WebController {
     			 append("year", 2015).
     			 append("by", "Anil");
     	 coll.insert(doc);
+    	 db.isAuthenticated(); 
     	 System.out.println(coll+"=============================");
     	 List<Books> list = new ArrayList<Books>();
     	 System.out.println(list.size()+"=============================");
