@@ -32,18 +32,33 @@ public class MongoDBSingleton {
  
  public DB getTestdb() {
 	 
+	 
+	 
 	//link is: mongodb://<user>:<password>@ds<port>.mlab.com:<port>/<db>
 	    MongoClientURI uri  = new MongoClientURI("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest");
 	    MongoClient client;
 		try {
-			mongoClient = new MongoClient(uri);
-			db =mongoClient.getDB("springtest");
-			
-	    System.out.println(db+"======================================="+db.isAuthenticated());
+			client = new MongoClient(uri);
+		
+	    System.out.println(client.getDB("springtest")+"=======================================");
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	    
+	    
+  if(mongoClient == null){
+   try {
+    mongoClient = new MongoClient(dbHost , dbPort);
+   } catch (UnknownHostException e) {
+    return null;
+   }
+  }
+  if(db == null)
+   db = mongoClient.getDB(dbName);
+  if(!db.isAuthenticated()){
+   boolean auth = db.authenticate(dbUser, dbPassword.toCharArray());
+  }
   return db;
  }
 }
