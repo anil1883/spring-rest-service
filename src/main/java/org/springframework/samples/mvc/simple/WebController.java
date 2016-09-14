@@ -53,11 +53,11 @@ public class WebController {
     	 MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
     	 DB db = dbSingleton.getTestdb();
     	 DBCollection coll = db.getCollection("Books");	
-    	 BasicDBObject doc = new BasicDBObject("title", name).
-    			 append("description", description).
-    			 append("likes", likes).
-    			 append("year", year).
-    			 append("by", by);
+    	 BasicDBObject doc = new BasicDBObject("title", "Anil").
+    			 append("description", "My Name").
+    			 append("likes", 2).
+    			 append("year", 2015).
+    			 append("by", "Anil");
     	 coll.insert(doc);
     	 return db.isAuthenticated() + " ; " + db.getName();
 
