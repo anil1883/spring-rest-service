@@ -32,15 +32,18 @@ public class WebController {
     	 DB db = dbSingleton.getTestdb();
     	 System.out.println(db+"=============================");
     	 DBCollection coll = db.getCollection("Books");	
-    	 BasicDBObject doc = new BasicDBObject("title", "Anil").
-    			 append("description", "My Name").
-    			 append("likes", 2).
-    			 append("year", 2015).
-    			 append("by", "Anil");
-    	 coll.insert(doc);
-    	 db.isAuthenticated(); 
-    	 System.out.println(coll+"=============================");
+    	 DBCursor cursor = coll.find().sort(new BasicDBObject("by", 1));
     	 List<Books> list = new ArrayList<Books>();
+    	 while (cursor.hasNext()) { 
+             DBObject o = cursor.next();
+             Books bools = new Books();
+             bools.setTitle((String) o.get("title"));
+             bools.setDescription((String) o.get("description"));
+             bools.setYear((String) o.get("year"));
+             bools.setBy((String) o.get("by"));
+             bools.setLikes((Long) o.get("likes"));
+             list.add(bools);
+          }
     	 System.out.println(list.size()+"=============================");
 		return "Hello world!";
 	}

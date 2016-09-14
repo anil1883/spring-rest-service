@@ -38,6 +38,7 @@ public class MongoDBSingleton {
 		try {
 			mongoClient = new MongoClient(uri);
 			db =mongoClient.getDB("springtest");
+			
 	    System.out.println(db+"======================================="+db.isAuthenticated());
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
