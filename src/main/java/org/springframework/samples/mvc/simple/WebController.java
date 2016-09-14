@@ -30,8 +30,14 @@ public class WebController {
 	public @ResponseBody String simple() {
 		 MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
     	 DB db = dbSingleton.getTestdb();
-    	 System.out.println(db+"=============================db");
+    	 System.out.println(db+"=============================");
     	 DBCollection coll = db.getCollection("Books");	
+    	 BasicDBObject doc = new BasicDBObject("title", "Anil").
+    			 append("description", "My Name").
+    			 append("likes", 2).
+    			 append("year", 2015).
+    			 append("by", "Anil");
+    	 coll.insert(doc);
     	 System.out.println(coll+"=============================");
     	 List<Books> list = new ArrayList<Books>();
     	 System.out.println(list.size()+"=============================");
@@ -53,11 +59,11 @@ public class WebController {
     	 MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
     	 DB db = dbSingleton.getTestdb();
     	 DBCollection coll = db.getCollection("Books");	
-    	 BasicDBObject doc = new BasicDBObject("title", "Anil").
-    			 append("description", "My Name").
-    			 append("likes", 2).
-    			 append("year", 2015).
-    			 append("by", "Anil");
+    	 BasicDBObject doc = new BasicDBObject("title", name).
+    			 append("description", description).
+    			 append("likes", likes).
+    			 append("year", year).
+    			 append("by", by);
     	 coll.insert(doc);
     	 return db.isAuthenticated() + " ; " + db.getName();
 
