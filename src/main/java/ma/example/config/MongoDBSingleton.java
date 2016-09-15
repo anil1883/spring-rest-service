@@ -47,7 +47,10 @@ public class MongoDBSingleton {
 			MongoCredential credential = MongoCredential.createMongoCRCredential(mongoURI.getUsername(),
 					mongoURI.getDatabase(), mongoURI.getPassword());
 			MongoClient mongoClient = new MongoClient(new ServerAddress(), Arrays.asList(credential));
-			mongoClient.setWriteConcern(WriteConcern.JOURNALED);
+			//mongoClient.setWriteConcern(WriteConcern.JOURNALED);
+			if(db.isAuthenticated()){
+				 System.out.println("++++++++++++++++++++++++++++++++db.isAuthenticated()+++");
+			}
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
