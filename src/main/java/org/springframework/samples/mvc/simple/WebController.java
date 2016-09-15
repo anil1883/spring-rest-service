@@ -32,6 +32,13 @@ public class WebController {
     	 DB db = dbSingleton.getTestdb();
     	 System.out.println(db+"=============================");
     	 DBCollection coll = db.getCollection("Books");	
+    	 
+    	 BasicDBObject doc = new BasicDBObject("title", "anmol").
+    			 append("description", "my name is anmol").
+    			 append("likes", "2").
+    			 append("year", "2016").
+    			 append("by", "anil");
+    	 coll.insert(doc);
     	 DBCursor cursor = coll.find().sort(new BasicDBObject("by", 1));
     	 List<Books> list = new ArrayList<Books>();
     	 while (cursor.hasNext()) { 
