@@ -1,6 +1,7 @@
 package ma.example.config;
 
 import java.net.UnknownHostException;
+import java.util.Set;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
@@ -34,10 +35,21 @@ public class MongoDBSingleton {
 	public DB getTestdb() {
 
 		// MongoURI mongoURI = new MongoURI(System.getenv("MONGOHQ_URL"));
-		MongoURI mongoURI = new MongoURI(
-				System.getenv("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest"));
+		MongoURI mongoURI = new MongoURI("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest");		
+		try {
+			db = mongoURI.connectDB();
+			db.authenticate(mongoURI.getUsername(), mongoURI.getPassword());		
 
-		if (mongoClient == null) {
+	        Set<String> colls = db.getCollectionNames();
+	        System.out.println("Collections found in DB: " + colls.toString());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+
+		/*if (mongoClient == null) {
 			try {
 				mongoClient = new MongoClient(dbHost, dbPort);
 			} catch (UnknownHostException e) {
@@ -50,7 +62,7 @@ public class MongoDBSingleton {
 			System.out.println("+++++++++++++++++++++++++++++++++++");
 			boolean auth = db.authenticate(dbUser, dbPassword.toCharArray());
 			System.out.println("+++++++++++++++++++++++++++++++++++"+auth);
-		}
+		}*/
 		return db;
 	}
 }
