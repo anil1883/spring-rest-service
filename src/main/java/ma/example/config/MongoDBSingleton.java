@@ -2,6 +2,7 @@ package ma.example.config;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.Set;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
@@ -42,15 +43,13 @@ public class MongoDBSingleton {
 		// MongoURI mongoURI = new MongoURI(System.getenv("MONGOHQ_URL"));
 		// get connected
 		DB db = null;
+
 		try {
 			db = mongoURI.connectDB();
-			MongoCredential credential = MongoCredential.createMongoCRCredential(mongoURI.getUsername(),
-					mongoURI.getDatabase(), mongoURI.getPassword());
-			MongoClient mongoClient = new MongoClient(new ServerAddress(), Arrays.asList(credential));
-			//mongoClient.setWriteConcern(WriteConcern.JOURNALED);
-			if(db.isAuthenticated()){
-				 System.out.println("++++++++++++++++++++++++++++++++db.isAuthenticated()+++");
-			}
+			db.authenticate(mongoURI.getUsername(), mongoURI.getPassword());
+			Set<String> colls = db.getCollectionNames();
+			System.out.println("Collections found in DB: " + colls.toString());
+
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
