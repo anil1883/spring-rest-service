@@ -33,8 +33,8 @@ public class MongoDBSingleton {
 	public DB getTestdb() {
 
 		// MongoURI mongoURI = new MongoURI(System.getenv("MONGOHQ_URL"));
-		MongoURI mongoURI = new MongoURI(
-				System.getenv("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest"));
+	/*	MongoURI mongoURI = new MongoURI(
+				System.getenv("mongodb://anil1883:anil1883@ds019846.mlab.com:19846/springtest"));*/
 
 		if (mongoClient == null) {
 			try {
