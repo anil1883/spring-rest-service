@@ -56,7 +56,7 @@ public class WebController {
      }  
        
      
-     @GET 
+    /* @GET 
      @Path("/insert/{name}/{by}/{likes}/{year}/{description}")  
      @Produces("text/plain")  
      public String insert(@PathParam("name") String name  , @PathParam("description") String description , @PathParam("likes") Long likes , @PathParam("year") String year , @PathParam("by") String by){
@@ -71,7 +71,7 @@ public class WebController {
     	 coll.insert(doc);
     	 return db.isAuthenticated() + " ; " + db.getName();
 
-     }  
+     }  */
      
      @GET 
      @Path("/getRecords")  
