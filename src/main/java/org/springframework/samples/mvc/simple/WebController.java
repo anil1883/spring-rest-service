@@ -41,7 +41,7 @@ public class WebController {
              bools.setDescription((String) o.get("description"));
              bools.setYear((String) o.get("year"));
              bools.setBy((String) o.get("by"));
-             bools.setLikes((Long) o.get("likes"));
+             bools.setLikes((String) o.get("likes"));
              list.add(bools);
           }
     	 System.out.println(list.size()+"=============================");
@@ -89,7 +89,7 @@ public class WebController {
              bools.setDescription((String) o.get("description"));
              bools.setYear((String) o.get("year"));
              bools.setBy((String) o.get("by"));
-             bools.setLikes((Long) o.get("likes"));
+           //  bools.setLikes((Long) o.get("likes"));
              list.add(bools);
           }
     	 return list;

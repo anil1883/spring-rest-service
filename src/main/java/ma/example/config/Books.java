@@ -10,7 +10,7 @@ public class Books {
 	private String description;  
 	private String year; 
 	private String by; 
-	private long likes;
+	private String likes;
 	
 	public void setTitle(String String){
 		this.title = String;
@@ -19,8 +19,8 @@ public class Books {
 		this.description = String;
 	}
 	
-	public void setLikes(long String){
-		this.likes = String;
+	public void setLikes(String string){
+		this.likes = string;
 	}
 	public void setYear(String String){
 		this.year = String;
@@ -38,7 +38,7 @@ public class Books {
 		return this.description;
 	}
 	@XmlElement  
-	public long getLikes(){
+	public String getLikes(){
 		return this.likes;
 	}
 	@XmlElement  
