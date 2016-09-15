@@ -57,7 +57,9 @@ public class MongoDBSingleton {
   if(db == null)
    db = mongoClient.getDB(dbName);
   if(!db.isAuthenticated()){
+	  System.out.println("+++++++++++++++++++++++++++++++++++");
    boolean auth = db.authenticate(dbUser, dbPassword.toCharArray());
+   System.out.println("+++++++++++++++++++++++++++++++++++");
   }
   return db;
  }
