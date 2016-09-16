@@ -3,9 +3,6 @@ package org.springframework.samples.mvc.simple;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,18 +33,14 @@ public class WebController {
 		return "Hello world!";
 	}
 
-	@GET
-	@RequestMapping("/echo/{message}")
-	@Produces("text/plain")
-	public String showMsg(@PathParam("message") String message) {
+	@RequestMapping(value="/echo/{message}",method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
+	public String showMsg(@PathVariable("message") String message) {
 		return message;
 	}
 
-	@GET
 	@RequestMapping(value = "/insert/{name}/{by}/{likes}/{year}/{description}", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN)
-	@Produces("text/plain")
-	public String insert(@PathParam("name") String name, @PathParam("description") String description,
-			@PathParam("likes") Long likes, @PathParam("year") String year, @PathParam("by") String by) {
+	public String insert(@PathVariable("name") String name, @PathVariable("description") String description,
+			@PathVariable("likes") Long likes, @PathVariable("year") String year, @PathVariable("by") String by) {
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
 		DB db = dbSingleton.getTestdb();
 		DBCollection coll = db.getCollection("Books");
