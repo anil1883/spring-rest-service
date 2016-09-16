@@ -33,6 +33,7 @@
 		<li><a href="#exceptions">Exception Handling</a></li>
 		<li><a href="#redirect">Redirecting</a></li>
         <li><a href="#async">Async Requests</a></li>
+        <li><a href="#other">Other</a></li>
     </ul>
     <div id="simple">
 		<h2>Simple</h2>
@@ -445,6 +446,20 @@
 			<a id="deferredResultTimeoutValueLink" class="textLink"
 				href="<c:url value="/async/deferred-result/timeout-value" />">GET /async/deferred-result/timeout-value</a>
 		</li>
+		</ul>
+	</div>
+	<div id="other">
+		<h2>Other</h2>
+		<p>
+			See the <code>org.springframework.samples.mvc.redirect</code> package for the @Controller code	
+		</p>
+		<ul>
+			<li>
+				<a href="<c:url value="/login" />">Login</a>
+			</li>
+			<li>
+				<a href="<c:url value="/register" />">Register</a>
+			</li>
 		</ul>
 	</div>
 </div>
