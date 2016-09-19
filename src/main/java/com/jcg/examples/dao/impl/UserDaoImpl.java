@@ -72,6 +72,7 @@ public class UserDaoImpl implements UserDao {
 
 			list.add(user);
 		}
+		System.out.println("======================================"+list.size());
 		return list;
 	}
 
