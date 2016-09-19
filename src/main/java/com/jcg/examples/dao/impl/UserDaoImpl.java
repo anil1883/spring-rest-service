@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
 		DB db = dbSingleton.getTestdb();
 		DBCollection coll = db.getCollection("Users");
-		DBCursor cursor = coll.find().sort(new BasicDBObject("by", 1));
+		//DBCursor cursor = coll.find().sort(new BasicDBObject("by", 1));
 		List<User> list = new ArrayList<User>();
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
