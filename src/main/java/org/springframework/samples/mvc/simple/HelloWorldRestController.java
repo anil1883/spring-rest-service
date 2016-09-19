@@ -33,6 +33,7 @@ public class HelloWorldRestController {
         if(users.isEmpty()){
             return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
+        System.out.println("======================================");
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
  
