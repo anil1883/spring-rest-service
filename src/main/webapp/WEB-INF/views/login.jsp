@@ -16,5 +16,20 @@
 			<form:password id="password" name="password" path="" /><br>
 			<input type="submit" value="Submit" />
 		</form:form>
+		
+		 <div align="center">
+		<h2>Register Page</h2>
+		
+		<ul>
+			<li>
+			<p>
+			<a class="btn btn-default" href="/spring-rest-service/register"" role="button">Register</a>
+		</p>
+				
+			</li>			
+		</ul>
+	</div>
 	</body>
+	
+	
 </html>

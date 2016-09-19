@@ -41,5 +41,17 @@
             </table>
         </form:form>
     </div>
+     <div align="center">
+		<h2>Login Page</h2>
+		
+		<ul>
+			<li>
+			<p>
+			<a class="btn btn-default" href="/spring-rest-service/login"" role="button">Login</a>
+		</p>
+				
+			</li>			
+		</ul>
+	</div>
 </body>
 </html>
