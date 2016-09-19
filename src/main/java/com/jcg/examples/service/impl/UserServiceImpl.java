@@ -1,10 +1,8 @@
 package com.jcg.examples.service.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,13 +12,10 @@ import com.jcg.examples.service.UserService;
 
 public class UserServiceImpl implements UserService {
 
-	private static final AtomicLong counter = new AtomicLong();
+	private static final AtomicInteger counter = new AtomicInteger();
 
 	private static List<User> users;
 
-	static {
-		users = populateDummyUsers();
-	}
 
 	@Autowired
 	private UserDao userDao;
@@ -59,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
 	public void saveUser(User user) {
 		user.setId(counter.incrementAndGet());
-		users.add(user);
+		userDao.saveUser(user);
 	}
 
 	public void updateUser(User user) {
@@ -69,12 +64,7 @@ public class UserServiceImpl implements UserService {
 
 	public void deleteUserById(long id) {
 
-		for (Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
-			User user = iterator.next();
-			if (user.getId() == id) {
-				iterator.remove();
-			}
-		}
+		userDao.deleteUserById(id);
 	}
 
 	public boolean isUserExist(User user) {
@@ -82,15 +72,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void deleteAllUsers() {
-		users.clear();
+		userDao.deleteAllUsers();
 	}
 
-	private static List<User> populateDummyUsers() {
-		List<User> users = new ArrayList<User>();
-		users.add(new User(counter.incrementAndGet(), "Sam", "NY", "sam@abc.com"));
-		users.add(new User(counter.incrementAndGet(), "Tomy", "ALBAMA", "tomy@abc.com"));
-		users.add(new User(counter.incrementAndGet(), "Kelly", "NEBRASKA", "kelly@abc.com"));
-		return users;
-	}
+	
 
 }

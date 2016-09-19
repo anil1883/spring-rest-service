@@ -65,7 +65,7 @@ public class UserDaoImpl implements UserDao {
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
 			User user = new User();
-			user.setId((Long) o.get("id"));
+			user.setId((Integer) o.get("id"));
 			user.setUsername((String) o.get("username"));
 			user.setAddress((String) o.get("address"));
 			user.setEmail((String) o.get("email"));
@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
 			User user = new User();
-			Long id2 = (Long) o.get("id");
+			Integer id2 = (Integer) o.get("id");
 			if (id2 == id) {
 				user.setId(id2);
 				user.setUsername((String) o.get("username"));
@@ -107,7 +107,7 @@ public class UserDaoImpl implements UserDao {
 			User user = new User();
 			String username = (String) o.get("id");
 			if (name.equalsIgnoreCase(username)) {
-				user.setId((Long) o.get("id"));
+				user.setId((Integer) o.get("id"));
 				user.setUsername((String) o.get("username"));
 				user.setAddress((String) o.get("address"));
 				user.setEmail((String) o.get("email"));
@@ -142,7 +142,7 @@ public class UserDaoImpl implements UserDao {
 		DBCursor cursor = coll.find(new BasicDBObject("id", id));
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
-			Long id2 = (Long) o.get("id");
+			Integer id2 = (Integer) o.get("id");
 			if (id2 == id) {
 				coll.remove(cursor.next());
 			}

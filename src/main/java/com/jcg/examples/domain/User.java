@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class User {
 
-	private long id;
+	private Integer id;
 
 	private String username;
 
@@ -20,7 +20,7 @@ public class User {
 		id = 0;
 	}
 
-	public User(long id, String username, String address, String email) {
+	public User(Integer id, String username, String address, String email) {
 		this.id = id;
 		this.username = username;
 		this.address = address;
@@ -31,7 +31,7 @@ public class User {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
