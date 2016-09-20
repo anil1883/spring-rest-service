@@ -25,6 +25,27 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	// private static List<User> users = new ArrayList<User>();
+
+	/*
+	 * static {
+	 * 
+	 * MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance(); DB db =
+	 * dbSingleton.getTestdb(); DBCollection coll = db.getCollection("Users");
+	 * DBCursor cursor = coll.find().sort(new BasicDBObject("id", 1));
+	 * List<User> list = new ArrayList<User>(); while (cursor.hasNext()) {
+	 * DBObject o = cursor.next(); User user = new User(); user.setId(((Integer)
+	 * o.get("id")).longValue()); user.setUsername((String) o.get("username"));
+	 * user.setAddress((String) o.get("address")); user.setEmail((String)
+	 * o.get("email"));
+	 * 
+	 * list.add(user); }
+	 * 
+	 * users = list;
+	 * 
+	 * 
+	 * }
+	 */
 	@Override
 	public boolean isValidUser(String username, String password) throws SQLException {
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
@@ -57,6 +78,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public List<User> findAllUsers() {
+
+		System.out.println("sdfbsndfbsndfbnsdbfnsdbn");
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
 		DB db = dbSingleton.getTestdb();
 		DBCollection coll = db.getCollection("Users");
@@ -65,14 +88,13 @@ public class UserDaoImpl implements UserDao {
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
 			User user = new User();
-			user.setId(((Integer) o.get("id")).longValue());
+			user.setId((Long) o.get("id"));
 			user.setUsername((String) o.get("username"));
 			user.setAddress((String) o.get("address"));
 			user.setEmail((String) o.get("email"));
 
 			list.add(user);
 		}
-		System.out.println("======================================"+list.size());
 		return list;
 	}
 
@@ -85,7 +107,7 @@ public class UserDaoImpl implements UserDao {
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
 			User user = new User();
-			Integer id2 = (Integer) o.get("id");
+			Long id2 = (Long) o.get("id");
 			if (id2 == id) {
 				user.setId(id2.longValue());
 				user.setUsername((String) o.get("username"));
@@ -108,7 +130,7 @@ public class UserDaoImpl implements UserDao {
 			User user = new User();
 			String username = (String) o.get("id");
 			if (name.equalsIgnoreCase(username)) {
-				user.setId(((Integer) o.get("id")).longValue());
+				user.setId(((Long) o.get("id")));
 				user.setUsername((String) o.get("username"));
 				user.setAddress((String) o.get("address"));
 				user.setEmail((String) o.get("email"));
@@ -130,9 +152,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void updateUser(User user) {
-		/*
-		 * int index = users.indexOf(user); users.set(index, user);
-		 */
+
+		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
+		DB db = dbSingleton.getTestdb();
+		DBCollection coll = db.getCollection("Users");
+		BasicDBObject newDocument = new BasicDBObject();
+		newDocument.put("email", user.getEmail());
+
+		BasicDBObject searchQuery = new BasicDBObject().append("id", user.getId());
+
+		coll.update(searchQuery, newDocument);
+
 	}
 
 	public void deleteUserById(long id) {
@@ -141,13 +171,9 @@ public class UserDaoImpl implements UserDao {
 		DB db = dbSingleton.getTestdb();
 		DBCollection coll = db.getCollection("Users");
 		DBCursor cursor = coll.find(new BasicDBObject("id", id));
-		while (cursor.hasNext()) {
-			DBObject o = cursor.next();
-			Integer id2 = (Integer) o.get("id");
-			if (id2.longValue() == id) {
-				coll.remove(cursor.next());
-			}
-		}
+		BasicDBObject query = new BasicDBObject();
+		query.append("id", id);
+		coll.remove(query);
 	}
 
 	public boolean isUserExist(User user) {

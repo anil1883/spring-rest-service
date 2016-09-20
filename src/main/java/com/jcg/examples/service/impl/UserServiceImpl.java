@@ -14,8 +14,6 @@ public class UserServiceImpl implements UserService {
 
 	private static final AtomicInteger counter = new AtomicInteger();
 
-	private static List<User> users;
-
 
 	@Autowired
 	private UserDao userDao;
@@ -58,8 +56,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void updateUser(User user) {
-		int index = users.indexOf(user);
-		users.set(index, user);
+		//int index = users.indexOf(user);
+		//users.set(index, user);
 	}
 
 	public void deleteUserById(long id) {
