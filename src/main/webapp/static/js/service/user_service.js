@@ -2,7 +2,7 @@
 
 angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8080/spring-rest-service/user/';
+    var REST_SERVICE_URI = 'http://test-spring123.herokuapp.com/user/';
 
     var factory = {
         fetchAllUsers: fetchAllUsers,

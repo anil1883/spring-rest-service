@@ -25,27 +25,7 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// private static List<User> users = new ArrayList<User>();
-
-	/*
-	 * static {
-	 * 
-	 * MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance(); DB db =
-	 * dbSingleton.getTestdb(); DBCollection coll = db.getCollection("Users");
-	 * DBCursor cursor = coll.find().sort(new BasicDBObject("id", 1));
-	 * List<User> list = new ArrayList<User>(); while (cursor.hasNext()) {
-	 * DBObject o = cursor.next(); User user = new User(); user.setId(((Integer)
-	 * o.get("id")).longValue()); user.setUsername((String) o.get("username"));
-	 * user.setAddress((String) o.get("address")); user.setEmail((String)
-	 * o.get("email"));
-	 * 
-	 * list.add(user); }
-	 * 
-	 * users = list;
-	 * 
-	 * 
-	 * }
-	 */
+	
 	@Override
 	public boolean isValidUser(String username, String password) throws SQLException {
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
