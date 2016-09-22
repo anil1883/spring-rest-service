@@ -146,6 +146,7 @@ public class UserDaoImpl implements UserDao {
 		newDocument.put("email", user.getEmail());
 		newDocument.put("address", user.getAddress());
 		newDocument.put("username", user.getUsername());
+		newDocument.put("id", user.getId());
 
 		BasicDBObject searchQuery = new BasicDBObject().append("id", user.getId());
 
