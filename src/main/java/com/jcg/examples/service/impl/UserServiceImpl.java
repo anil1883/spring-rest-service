@@ -56,8 +56,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void updateUser(User user) {
-		//int index = users.indexOf(user);
-		//users.set(index, user);
+		userDao.updateUser(user);
 	}
 
 	public void deleteUserById(long id) {
