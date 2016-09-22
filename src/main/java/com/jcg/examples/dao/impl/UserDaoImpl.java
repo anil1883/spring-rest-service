@@ -144,6 +144,8 @@ public class UserDaoImpl implements UserDao {
 		DBCollection coll = db.getCollection("Users");
 		BasicDBObject newDocument = new BasicDBObject();
 		newDocument.put("email", user.getEmail());
+		newDocument.put("address", user.getAddress());
+		newDocument.put("username", user.getUsername());
 
 		BasicDBObject searchQuery = new BasicDBObject().append("id", user.getId());
 
