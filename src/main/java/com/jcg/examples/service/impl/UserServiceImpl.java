@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void saveUser(User user) {
-		user.setId(counter.incrementAndGet());
+		//user.setId(counter.incrementAndGet());
 		userDao.saveUser(user);
 	}
 

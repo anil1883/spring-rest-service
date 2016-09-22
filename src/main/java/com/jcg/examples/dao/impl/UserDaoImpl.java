@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.jcg.examples.dao.UserDao;
+import com.jcg.examples.dao.impl.util.UtilDummy;
 import com.jcg.examples.domain.User;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -125,6 +126,7 @@ public class UserDaoImpl implements UserDao {
 	public void saveUser(User user) {
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
 		DB db = dbSingleton.getTestdb();
+		user.setId(Long.valueOf(UtilDummy.getNextId("uniqueId")));
 		DBCollection coll = db.getCollection("Users");
 		BasicDBObject doc = new BasicDBObject("username", user.getUsername()).append("id", user.getId())
 				.append("email", user.getEmail()).append("address", user.getAddress());
@@ -167,5 +169,6 @@ public class UserDaoImpl implements UserDao {
 		BasicDBObject document = new BasicDBObject();
 		coll.remove(document);
 	}
+	
 
 }
