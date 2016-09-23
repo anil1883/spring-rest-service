@@ -92,9 +92,12 @@ public class UserDaoImpl implements UserDao {
 		while (cursor.hasNext()) {
 			DBObject o = cursor.next();
 			User user = new User();
-			Long id2 = (Long) o.get("id");
-			if (id2 == id) {
-				user.setId(id2.longValue());
+			Object obj = o.get("id");
+			if(obj instanceof Integer )
+				user.setId(((Integer)obj).longValue());
+			else 
+				user.setId((long)obj);
+			if (user.getId() == id) {
 				user.setUsername((String) o.get("username"));
 				user.setAddress((String) o.get("address"));
 				user.setEmail((String) o.get("email"));
