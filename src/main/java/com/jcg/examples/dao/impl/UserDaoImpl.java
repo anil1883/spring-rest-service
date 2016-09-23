@@ -138,15 +138,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void updateUser(User user) {
-
 		MongoDBSingleton dbSingleton = MongoDBSingleton.getInstance();
 		DB db = dbSingleton.getTestdb();
 		DBCollection coll = db.getCollection("Users");
 		BasicDBObject newDocument = new BasicDBObject();
-		newDocument.put("email", user.getEmail());
-		newDocument.put("address", user.getAddress());
-		newDocument.put("username", user.getUsername());
-		newDocument.put("id", user.getId());
+		newDocument.append("$set", new BasicDBObject("username", user.getUsername()).append("id", user.getId())
+				.append("email", user.getEmail()).append("address", user.getAddress()));
 
 		BasicDBObject searchQuery = new BasicDBObject().append("id", user.getId());
 
